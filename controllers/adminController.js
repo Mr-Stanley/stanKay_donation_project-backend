@@ -17,6 +17,10 @@ const adminController = {
     },
   
     async getAcceptableItems(req, res) {
+      const exists = getAcceptableItems().some(item => item.name === name);
+if (exists) {
+  return res.status(400).json({ error: 'Item already exists' });
+}
       if (req.user?.role !== 'admin') {
         return res.status(403).json({ error: 'Admin access required' });
       }

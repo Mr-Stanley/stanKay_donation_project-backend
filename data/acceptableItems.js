@@ -1,15 +1,11 @@
-const acceptableItems = [
-    { name: 'Clothes', category: 'Apparel' },
-    { name: 'Books', category: 'Education' },
-    { name: 'Toys', category: 'Children' },
-    {name: 'food', category: 'raw-food'},
-  ];
-  
-  const getAcceptableItems = () => acceptableItems;
-  
-  const addAcceptableItem = (item) => {
-    acceptableItems.push(item);
-    return acceptableItems;
-  };
-  
-  module.exports = { getAcceptableItems, addAcceptableItem };
+const mongoose = require('mongoose');
+
+
+const itemSchema = new mongoose.Schema({
+  name: { type: String, required: true, unique: true },
+  category: { type: String, required: true }
+});
+
+
+  const AcceptableItem = mongoose.model('AcceptableItem', itemSchema);
+  module.exports = AcceptableItem;
